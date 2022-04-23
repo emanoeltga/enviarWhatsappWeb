@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Manda Whatsapp</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-image: url("https://wallpaperaccess.com/full/2224368.png");
+        font-family: "Roboto", sans-serif;
+      }
+
+      .card {
+        background-color: #daf7c1;
+        width: 220px;
+        height: 80px;
+        margin: 8px;
+        padding: 8px 18px;
+        border-radius: 12px;
+        box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .card:hover {
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+      }
+      .img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+      }
+      .card > .img {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" onclick="mandazap(this)">
+      <p>Bom Dia! Luz do Dia.</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+    <div class="card" onclick="mandazap(this)">
+      <p>Bom Dia! Morena Linda.</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+    <div class="card" onclick="mandazap(this)">
+      <p>Captei a vossa mensagem.</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+    <div class="card" onclick="mandazap(this)">
+      <p>Você consegui resolver, confia em você.</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+    <div class="card" onclick="mandazap(this)">
+      <p>Deus abençoe sua vida Hoje.</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+    <div class="card" onclick="mandazap(this)">
+      <p>Cadê meu Doce que eu deixei na geladeira?</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+    <div class="card" onclick="mandazap(this)">
+      <p>Onde você pensa que vai?</p>
+      <img
+        class="img"
+        src="https://w7.pngwing.com/pngs/922/489/png-transparent-whatsapp-icon-logo-whatsapp-logo-whatsapp-logo-text-trademark-grass-thumbnail.png"
+      />
+    </div>
+
+    <script>
+      function mandazap(elemento) {
+        console.log(elemento.firstElementChild.innerText);
+        let texto = elemento.firstElementChild.innerText;
+        let numero = prompt("Qual é o numero para envio?");
+        let zaplink = `https://api.whatsapp.com/send?phone=55${numero}&text=${texto}`;
+
+        window.open(zaplink);
+      }
+    </script>
+  </body>
+</html>
