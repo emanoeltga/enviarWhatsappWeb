@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<!-- saved from url=(0045)https://ocekzk.csb.app/GerenciadorTarefa.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="./Manda Whatsapp_files/sse-hooks.f648b14c15c640a14a557113a991cb8d.js.download"></script>
+    <script type="text/javascript" src="./Manda Whatsapp_files/banner.be879265d.js.download"></script>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Manda Whatsapp</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;1,100&display=swap");
@@ -15,7 +18,6 @@
           rgba(121, 9, 102, 0.5522584033613445) 35%,
           rgba(0, 212, 255, 1) 100%
         );
-
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -24,133 +26,162 @@
       .board {
         background-color: rgba(255, 255, 255, 0.8);
         width: 320px;
-        margin: 4px;
+        margin: 6px;
+        border-radius: 6px;
         display: flex;
         flex-direction: column;
       }
 
-      h3 {
+      .board-title {
+        text-align: center;
         background-color: lightcoral;
         color: white;
         margin: 0;
-        text-align: center;
-        font-size: 26px;
-        font-weight: 400;
-      }
-      .add-card {
-        background-color: rgba(121, 9, 102, 0.5522584033613445);
-        margin: 4px 8px;
-        border-radius: 2px;
-      }
-      .add-card:hover {
-        cursor: pointer;
-      }
-      .add-card p {
-        font-size: 16px;
-        padding: 6px;
-        font-weight: 100;
       }
       ul {
-        list-style-type: none;
         min-height: 300px;
+        margin: 2px;
         padding: 2px;
+        list-style-type: none;
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         align-content: flex-start;
       }
       li {
-        background-color: white;
-        box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        min-width: 100px;
-        height: 40px;
+        font-size: 14px;
+        font-weight: 700;
         display: flex;
         justify-content: space-between;
-        margin: 4px 10px;
-        padding: 8px;
-        align-items: center;
       }
-      li:hover {
+      .card {
+        background-color: white;
+        height: 40px;
+        min-width: 120px;
+        margin: 4px 10px;
+        border-radius: 4px;
         cursor: move;
+        padding: 8px;
+        box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+      }
+      .add-card {
+        background-color: rgba(200, 200, 200, 0.9);
+        border-radius: 2px;
+        margin: 4px;
+      }
+      .add-card p {
+        font-size: 14px;
+        padding: 0 6px;
+      }
+      .add-card:hover {
+        cursor: pointer;
       }
       .remove {
-        background-color: pink;
-        width: 16px;
-        height: 16px;
         border-radius: 50%;
         text-align: center;
-        font-size: 12px;
+        width: 16px;
+        height: 16px;
         color: #c3c3c3;
       }
       .remove:hover {
+        border-radius: 50%;
+        text-align: center;
+        width: 16px;
+        height: 16px;
+        background-color: rgba(212, 176, 176, 0.3);
         cursor: pointer;
-        background-color: lightcoral;
+        color: black;
       }
     </style>
   </head>
   <body>
-    <div class="board">
-      <h3>A Fazer</h3>
-      <ul id="todo">
-        <li>
-          <p>Onde você pensa que vai?</p>
-          <p class="remove">x</p>
-        </li>
-        <li>
-          <p>Dormir</p>
-          <p class="remove">x</p>
-        </li>
+    <div class="board todo">
+      <h3 class="board-title">A Fazer</h3>
+      <ul id="dropTodo" ondrop="drop(event, this.id)" ondragover="allowDrop(event)">
+        
       </ul>
       <div class="add-card" onclick="addCard(this)">
-        <p>Adicionar Tarefa</p>
+        <p>Adicionar tarefa</p>
       </div>
     </div>
-    <div class="board">
-      <h3>Em execução</h3>
-      <ul id="doing">
-        <li>
-          <p>Onde você pensa que vai?</p>
-          <p class="remove">x</p>
-        </li>
-      </ul>
+    <div class="board doing">
+      <h3 class="board-title">Executando</h3>
+      <ul id="dropDoing" ondrop="drop(event,this.id)" ondragover="allowDrop(event)"></ul>
       <div class="add-card" onclick="addCard(this)">
-        <p>Adicionar Tarefa</p>
+        <p>Adicionar tarefa</p>
       </div>
     </div>
-    <div class="board">
-      <h3>Finalizado</h3>
-      <ul id="done">
-        <li>
-          <p>Onde você pensa que vai?</p>
-          <p class="remove">x</p>
-        </li>
-      </ul>
+    <div class="board done">
+      <h3 class="board-title">Finalizado</h3>
+      <ul id="dropDone" ondrop="drop(event, this.id)" ondragover="allowDrop(event)"><li id="card1" class="card" draggable="true" ondragstart="drag(event)">
+          <p>Lavar louça</p>
+          <p class="remove" onclick="removeCard(this)">x</p>
+        </li></ul>
       <div class="add-card" onclick="addCard(this)">
-        <p>Adicionar Tarefa</p>
+        <p>Adicionar tarefa</p>
       </div>
     </div>
-
     <script>
-      function addCard(elemento) {
-        const id = elemento.previousElementSibling.id;
-        const text = prompt("Qual o nome da Tarefa?:");
-        const bouard = document.getElementById(id);
-        let templete = `
-        <li>
-          <p>${text}</p>
-          <p class="remove">x</p>
-        </li>
-        `;
-        bouard.innerHTML = bouard.innerHTML + templete;
+      function allowDrop(ev) {
+        ev.preventDefault();
+        console.log("allowDrop(ev)");
       }
-      /*function mandazap(elemento) {
-        console.log(elemento.firstElementChild.innerText);
-        let texto = elemento.firstElementChild.innerText;
-        let numero = prompt("Qual é o numero para envio?");
-        let zaplink = `https://api.whatsapp.com/send?phone=55${numero}&text=${texto}`;
+      function drag(ev) {
+        ev.dataTransfer.setData("card", ev.target.id);
+        console.log("drag(ev)");
+      }
+      function drop(ev, id) {
+        ev.preventDefault();
+        const target = document.getElementById(id);
+        const data = ev.dataTransfer.getData("card");
+        const cardId = document.getElementById(data);
+        console.log("drop(ev, id)" + id);
+        target.appendChild(cardId);
+        ev.dataTransfer.clearData();
+        console.log("drop(ev, id)");
+      }
+      function addCard(element) {
+        const text = prompt("Qual é a tarefa?");
+        if (!text) return;
+        const cardId = +new Date();
+        const cardTemplate = `
+      <li id="${cardId}" class="card"
+      draggable="true" ondragstart="drag(event)">
+      <p>${text}</p>
+      <p class="remove"
+      onclick="removeCard(this)">x</p>
+      </li>
+      `;
+        const board = document.getElementById(
+          element.previousElementSibling.id
+        );
+        board.innerHTML += cardTemplate;
+      }
+      function removeCard(element) {
+        console.log("Id: " + element.parentElement.id);
+        document.getElementById(element.parentElement.id).remove();
+      }
 
-        window.open(zaplink);
-      }*/
+      /*function mandazap(elemento) {
+                    console.log(elemento.firstElementChild.innerText);
+                    let texto = elemento.firstElementChild.innerText;
+                    let numero = prompt("Qual é o numero para envio?");
+                    let zaplink = `https://api.whatsapp.com/send?phone=55${numero}&text=${texto}`;
+
+                    window.open(zaplink);
+                  }*/
     </script>
-  </body>
-</html>
+    <script crossorigin="" type="text/javascript" src="./Manda Whatsapp_files/watermark-button.be960f43b.js.download"></script>
+  
+
+<iframe id="sb__open-sandbox79" style="
+      position: fixed;
+      margin: 0;
+      padding: 0;
+      bottom: 16px;
+      right: 16px;
+      border: none;
+      width: 118px;
+      height: 36px;
+      z-index: 9999999999999;
+    " src="./Manda Whatsapp_files/saved_resource.html"></iframe></body></html>
