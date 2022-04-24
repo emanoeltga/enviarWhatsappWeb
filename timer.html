@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Timer</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+      body {
+        background-color: black;
+        display: flex;
+        align-items: center;
+        margin: 40px;
+        flex-direction: column;
+      }
+      button {
+        background-color: #ff4791;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        padding: 4px 12px;
+      }
+      button:hover {
+        background-color: #d47299;
+        cursor: pointer;
+      }
+      .breset {
+        background-color: #e4b3c6;
+      }
+      h1 {
+        font-size: 64px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="conteiner">
+      <input type="datetime-local" value="2023-01-01T00:00:00" />
+      <button onclick="start()">Vai</button>
+      <button class="breset" onclick="stop()">Resetar</button>
+    </div>
+    <h1>🙄</h1>
+    <script>
+      const second = 1000;
+      const minute = 60 * second;
+      const hour = 60 * minute;
+      const day = 60 * hour;
+
+      let total = 0;
+      let finalDate = 0;
+      var id = 0;
+
+      if (localStorage.getItem("timer")) {
+        let data;
+        finalDate = localStorage.getItem("timer");
+        let date = new Date(finalDate * 1);
+        document.querySelector("input").innerText = new Date(finalDate);
+        id = 0;
+        id = setInterval(interval, 1000);
+      }
+
+      function start() {
+        const date = document.querySelector("input").value;
+        finalDate = new Date(date).getTime();
+        localStorage.setItem("timer", finalDate);
+        interval();
+        if (id == 0) {
+          id = setInterval(interval, 1000);
+        }
+      }
+      function stop() {
+        clearInterval(id);
+        document.querySelector("h1").innerText = "🙄";
+        id = 0;
+        localStorage.removeItem("timer", finalDate);
+      }
+      function interval() {
+        let now = new Date().getTime();
+        total = finalDate - now;
+
+        const days = Math.floor(total / day);
+        const hours = Math.floor((total % day) / hour) + 4;
+        const minutes = Math.floor((total % hour) / minute);
+        const seconds = Math.floor((total % minute) / second);
+        document.querySelector(
+          "h1"
+        ).innerHTML = `${days} D ${hours} H ${minutes} M ${seconds} S`;
+      }
+    </script>
+  </body>
+</html>
